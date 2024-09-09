@@ -72,10 +72,11 @@
 
       <!-- submit button -->
       <button type="submit" class="generate-resume" onclick="createResume()">Generate Resume</button>
+      <button type="submit">Generate Resume URL</button>
     </form>
 
 
-<!-- Generated Resume -->
+<!-- Generated Resume Output -->
 <div id="resume-output" class="resume">
   <!-- <h2 id="resume-name"></h2> -->
   
@@ -111,12 +112,14 @@
       <p><strong>Company:</strong> <span id="resume-company-name" contenteditable="true"></span></p>
       <p><strong>Start Date:</strong> <span id="resume-start-date" contenteditable="true"></span></p>
       <p><strong>End Date:</strong> <span id="resume-end-date" contenteditable="true"></span></p>
+      <p id="generatedUrl"></p>
   </div>
-
+  
 
   <button id="download-button" onclick="printResume()">Download as PDF</button>
 </div>
-
+    
+    <p id="generatedUrl"></p>
     <script src="./index.js"></script>
   </body>
 </html>
