@@ -389,23 +389,46 @@ const form = document.getElementById('form') as HTMLFormElement;
 const nameInput = document.getElementById('name') as HTMLInputElement;
 const generatedUrl = document.getElementById('generatedUrl') as HTMLParagraphElement;
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+        // Encode the data to be passed as a URL parameter
+        const queryString = encodeURIComponent(JSON.stringify(resumeData));
 
-    const userName = nameInput.value.trim();
-    if (userName) {
-        // URL generate based on the user's name
-        const userUrl = `${window.location.origin}/resume/${encodeURIComponent(userName)}`;
+        // Generate the unique URL with encoded resume data
+        const userUrl = `${window.location.origin}/resume.html?data=${queryString}`;
+        
+        // Display the generated URL to the user
         generatedUrl.innerHTML = `Your unique resume URL: <a href="${userUrl}" target="_blank">${userUrl}</a>`;
+
+    // Function to dynamically display the resume if we are on the resume page
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get('data');
+
+    if (encodedData) {
+        const resumeData = JSON.parse(decodeURIComponent(encodedData));
+
+        // Populate the resume data into the HTML (assume you have these elements in your resume.html)
+        (document.getElementById('resumeName') as HTMLElement).textContent = resumeData.userName;
+        (document.getElementById('resumeEmail') as HTMLElement).textContent = resumeData.email;
+        (document.getElementById('resumeContact') as HTMLElement).textContent = resumeData.contact;
+        (document.getElementById('resumePortfolio') as HTMLAnchorElement).textContent = resumeData.portfolio;
+        (document.getElementById('resumePortfolio') as HTMLAnchorElement).href = resumeData.portfolio;
+        (document.getElementById('resumeLinkedIn') as HTMLAnchorElement).textContent = resumeData.linkedin;
+        (document.getElementById('resumeLinkedIn') as HTMLAnchorElement).href = resumeData.linkedin;
+
+        (document.getElementById('resumeDegree') as HTMLElement).textContent = resumeData.degree;
+        (document.getElementById('resumeInstitution') as HTMLElement).textContent = resumeData.institution;
+        (document.getElementById('resumeYear') as HTMLElement).textContent = resumeData.year;
     }
-});
 
-  // Convert the object to a URL-friendly string
-  const queryString = encodeURIComponent(JSON.stringify(resumeData));
 
-  // Create a URL with the name and the query string
-  const resumeUrl = `${window.location.origin}/resume.html?data=${queryString}`;
+// form.addEventListener('submit', (e) => {
+//     e.preventDefault();
 
-  // Display the generated URL
-  const generatedUrlElement = document.getElementById('generatedUrl') as HTMLParagraphElement;
-  generatedUrlElement.innerHTML = `Your unique resume URL: <a href="${resumeUrl}" target="_blank">${resumeUrl}</a>`;
+//     const userName = nameInput.value.trim();
+//     if (userName) {
+//         // URL generate based on the user's name
+//         const userUrl = `${window.location.origin}/resume/${encodeURIComponent(userName)}`;
+//         generatedUrl.innerHTML = `Your unique resume URL: <a href="${userUrl}" target="_blank">${userUrl}</a>`;
+//     }
+// });
+
+
