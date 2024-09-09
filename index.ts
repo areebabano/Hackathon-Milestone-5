@@ -418,8 +418,6 @@ const generatedUrl = document.getElementById('generatedUrl') as HTMLParagraphEle
         (document.getElementById('resumeInstitution') as HTMLElement).textContent = resumeData.institution;
         (document.getElementById('resumeYear') as HTMLElement).textContent = resumeData.year;
     }
-
-
 // form.addEventListener('submit', (e) => {
 //     e.preventDefault();
 
