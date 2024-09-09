@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/resume/:name",
-        "destination": "/resume.html"
+        "destination": "/index.html"
       }
     ]
   }
