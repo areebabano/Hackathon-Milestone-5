@@ -399,3 +399,13 @@ form.addEventListener('submit', (e) => {
         generatedUrl.innerHTML = `Your unique resume URL: <a href="${userUrl}" target="_blank">${userUrl}</a>`;
     }
 });
+
+  // Convert the object to a URL-friendly string
+  const queryString = encodeURIComponent(JSON.stringify(resumeData));
+
+  // Create a URL with the name and the query string
+  const resumeUrl = `${window.location.origin}/resume.html?data=${queryString}`;
+
+  // Display the generated URL
+  const generatedUrlElement = document.getElementById('generatedUrl') as HTMLParagraphElement;
+  generatedUrlElement.innerHTML = `Your unique resume URL: <a href="${resumeUrl}" target="_blank">${resumeUrl}</a>`;
